@@ -1,11 +1,11 @@
-const AuthUser = (req, res, next) => {
-    // Authentication logic here
-    const isAuthenticated = true; // Replace with actual authentication check
-    if (!isAuthenticated) {
-        return res.status(401).send("Unauthorized");
+const logError = (err, req, res, next) => {
+    try {
+        if (err) {
+            res.status(500).send("Internal Server Error");
+        }
     }
-    else {
-        next();
+    catch (error) { 
+        console.error(error);
     }
 }
 
@@ -19,4 +19,4 @@ const loginAuth = (req, res, next) => {
         next();
     }
 }
-module.exports = { AuthUser, loginAuth };
+module.exports = { logError, loginAuth };
